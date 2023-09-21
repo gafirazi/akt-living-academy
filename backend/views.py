@@ -18,7 +18,7 @@ from .data import program_studis
 
 from django.contrib.auth.decorators import login_required
 # Create your views here.
-import pytz
+# import pytz
 
 def login(request):
     if request.method == 'POST':
@@ -111,7 +111,7 @@ def index(request):
     else:
         toast_message = ''
     murids = Murid.objects.all()
-    print(pytz.all_timezones_set)
+    # print(pytz.all_timezones_set)
     return render(request, 'index.html', {
         'murids': murids,
         'show_toast': show_toast,
