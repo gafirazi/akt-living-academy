@@ -4,7 +4,19 @@ verify_ssl = true
 name = "pypi"
  
 [packages]
-flask = "*"
+asgiref = "3.6.0"
+certifi = "2022.12.7"
+charset-normalizer = "3.0.1"
+Django = "4.1.5"
+django-cors-headers = "3.13.0"
+idna = "3.4"
+mysql-connector-python = "8.0.31"
+requests = "2.28.2"
+sqlparse = "0.4.3"
+tzdata = "2022.7"
+urllib3 = "1.26.14"
+whitenoise = "6.3.0"
+
  
 [requires]
-python_version = "3.7"
+python_version = "3.6"
