@@ -7,8 +7,7 @@ from django.contrib import messages
 from django.contrib.messages import get_messages
 
 # import traceback, xlwt, datetime, json
-import xlwt, datetime, json
-from datetime import date
+# from datetime import date
 
 from .middleware import is_superuser
 from .models import Murid, ReferralCode
@@ -49,7 +48,7 @@ def add_murid(request):
         print('masuk POST')
         try:
             data = request.POST
-            data = json.loads(list(data.keys())[0])
+            # data = json.loads(list(data.keys())[0])
             # print('1')
             # print('test', type(json.loads(list(data.keys())[0])))
             programStudi = data["programStudi"]
@@ -74,7 +73,8 @@ def add_murid(request):
             print('tanggal' + ' ' + str(tanggal))
 
             # insert to DB
-            new_date = date(int(tahun), int(bulan), int(tanggal))
+            # new_date = date(int(tahun), int(bulan), int(tanggal))
+            new_date = 'test'
 
             nim = get_new_nim(programStudi)
 
@@ -248,54 +248,55 @@ def download_excel_data(request):
     # content-type of response
     response = HttpResponse(content_type='application/ms-excel')
     
-    today = datetime.datetime.now()
+    # today = datetime.datetime.now()
     
-    #accessing the year attribute
-    year = today.year
+    # #accessing the year attribute
+    # year = today.year
 
     if len(request.GET) == 0:
         program_studi = "Personal Branding"
     else:
         program_studi = request.GET['programStudi']
     
-    #decide file name
-    response['Content-Disposition'] = 'attachment; filename="data_absensi_{}_{}.xls"'.format(program_studi, year)
+    # #decide file name
+    # response['Content-Disposition'] = 'attachment; filename="data_absensi_{}_{}.xls"'.format(program_studi, year)
     
-    #creating workbook
-    wb = xlwt.Workbook(encoding='utf-8')
+    # #creating workbook
+    # wb = xlwt.Workbook(encoding='utf-8')
     
-    #adding sheet
-    ws = wb.add_sheet("Sheet1")
+    # #adding sheet
+    # ws = wb.add_sheet("Sheet1")
     
-    # Sheet header, first row
-    row_num = 0
+    # # Sheet header, first row
+    # row_num = 0
     
-    font_style = xlwt.XFStyle()
-    # headers are bold
-    font_style.font.bold = True
+    # font_style = xlwt.XFStyle()
+    # # headers are bold
+    # font_style.font.bold = True
     
-    #column header names, you can use your own headers here
-    columns = ['No', 'Nama', 'NIM', 'Tanda Tangan', ]
+    # #column header names, you can use your own headers here
+    # columns = ['No', 'Nama', 'NIM', 'Tanda Tangan', ]
     
-    #write column headers in sheet
-    for col_num in range(len(columns)):
-        ws.write(row_num, col_num, columns[col_num], font_style)
+    # #write column headers in sheet
+    # for col_num in range(len(columns)):
+    #     ws.write(row_num, col_num, columns[col_num], font_style)
         
-    # Sheet body, remaining rows
-    font_style = xlwt.XFStyle()
+    # # Sheet body, remaining rows
+    # font_style = xlwt.XFStyle()
     
-    #get your data, from database or from a text file...
-    data = Murid.objects.filter(sudah_bayar = True, program_studi = program_studi)
+    # #get your data, from database or from a text file...
+    # data = Murid.objects.filter(sudah_bayar = True, program_studi = program_studi)
     
-    for my_row in data:
-        row_num = row_num + 1
-        ws.write(row_num, 0, row_num, font_style)
-        ws.write(row_num, 1, my_row.nama, font_style)
-        ws.write(row_num, 2, my_row.nim, font_style)
-        ws.write(row_num, 3, "", font_style)
+    # for my_row in data:
+    #     row_num = row_num + 1
+    #     ws.write(row_num, 0, row_num, font_style)
+    #     ws.write(row_num, 1, my_row.nama, font_style)
+    #     ws.write(row_num, 2, my_row.nim, font_style)
+    #     ws.write(row_num, 3, "", font_style)
         
-    wb.save(response)
-    return response
+    # wb.save(response)
+    # return response
+    return True
 
 def logout(request):
     if request.method == "POST":
