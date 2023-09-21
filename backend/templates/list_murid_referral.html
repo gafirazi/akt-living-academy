@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block mycss %}
+<style>
+    #tableAdmin {
+        width: 90%;
+        margin: auto;
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+    .toast-message {
+		top: 5%;
+	}
+	.toast-body {
+		display: flex;
+		justify-content: space-between;
+	}
+</style>
+{% endblock mycss %}
+
+{% block content %}
+<div class="container">
+
+    <div class="header">
+        <h2>List Murid By Referral Code</h2>
+    </div>
+    <form method="get" id="formReferralCode" action="{% url 'list_murid_referral' %}">
+        <select name="referralCode" class="form-select" aria-label="Default select example" onchange="this.form.submit()" id="selectReferralCode">
+            {% for referral_code in referral_codes %}
+                {% if referral_code.code == selected_referral_code %}
+                    <option value="{{referral_code.code}}" selected>{{ referral_code.code }}</option>
+                {% else %}
+                    <option value="{{referral_code.code}}">{{ referral_code.code }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </form>
+    <hr>
+
+    <table class="table" id="tableAdmin">
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Nama</th>
+                <th scope="col">NIM</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for murid in murids %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ murid.nama }}</td>
+                <td>{{ murid.nim }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock content %}

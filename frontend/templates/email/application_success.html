@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AKT Living Academy</title>
+  </head>
+  <body>
+    <img src="http://aktlivingacademy.com/static/img/akt-logo.png" alt="Logo" style="width: 100px"/>
+    <p>Hi! Terima kasih telah mendaftar di AKT Living Academy,</p>
+    {% if referralCode == 'AKS1' or referralCode == 'TBL1' %}
+    <p>Selamat anda berhasil menggunakan kode referal: {{referralCode}}. Anda akan mendapatkan potongan sebesar Rp. 500.000</p>
+    {% endif %}
+    <p>Berikut adalah detail dari pendaftaran anda:</p>
+    <br />
+
+    <p>- Program Studi: {{programStudi}}</p>
+    <p>- Harga Program: {{hargaProgram}}</p>
+    <p>- Nama Lengkap: {{namaLengkap}}</p>
+    <p>- Alamat Lengkap: {{alamatLengkap}}</p>
+    <p>- Tanggal Lahir: {{tanggal}}-{{bulan}}-{{tahun}}</p>
+    <p>- Jenis Kelamin: {{jenisKelamin}}</p>
+    <p>- No. telp: {{noTelp}}</p>
+
+    <p>
+      Silakan hubungi nomor Whatsapp ini untuk konfirmasi: 0822-3443-2345 <br />
+      <br />
+      Terima kasih telah mendaftar di AKT Living Academy
+      <br /><br />
+      Best regards, <br />
+      AKT Living Academy
+    </p>
+  </body>
+</html>

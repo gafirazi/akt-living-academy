@@ -1,0 +1,149 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block mycss %}
+<style>
+	#tableAdmin {
+		width: 90%;
+		margin: auto;
+	}
+	.toast-message {
+		top: 5%;
+	}
+	.toast-body {
+		display: flex;
+		justify-content: space-between;
+	}
+	.btn-yellow, .btn-yellow:hover {
+	    background-color: #fdbe15;
+	}
+</style>
+{% endblock mycss %}
+
+{% block content %}
+
+<div class="container">
+
+	<h2 style="margin-top: 50px;">Pendaftaran Siswa</h2>
+	<hr>
+
+	<table class="table" id="tableAdmin">
+		<thead>
+			<tr>
+				<th scope="col">No.</th>
+				<th scope="col">Nama</th>
+				<th scope="col">Program Studi</th>
+				<th scope="col">Harga Program</th>
+				<th scope="col">Alamat</th>
+				<th scope="col">Tanggal Lahir</th>
+				<th scope="col">Email</th>
+				<th scope="col">Jenis Kelamin</th>
+				<th scope="col">No telp</th>
+				<th scope="col">Sudah bayar</th>
+				<th scope="col">Actions</th>
+				<th scope="col">Terakhir diubah oleh</th>
+				<th scope="col">Waktu terakhir diubah</th>
+			</tr>
+		</thead>
+		<tbody>
+			
+			{% for murid in murids %}
+			<tr>
+				<th scope="row">{{ forloop.counter }}</th>
+				<td>{{ murid.nama }}</td>
+				<td>{{ murid.program_studi }}</td>
+				<td>{{ murid.harga_program }}</td>
+				<td>{{ murid.alamat }}</td>
+				<td>{{ murid.tanggal_lahir }}</td>
+				<td>{{ murid.email }}</td>
+				<td>{{ murid.jenis_kelamin }}</td>
+				<td>{{ murid.no_telp }}</td>
+				<td>
+					{% if murid.sudah_bayar %}
+						<span class="badge text-bg-success">Sudah</span>
+					{% else %}
+						<span class="badge text-bg-danger">Belum</span>
+					{% endif %}
+				</td>
+				<td>
+					<button type="button" class="btn btn-yellow" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="updateData('{{murid.id}}', '{{murid.sudah_bayar}}')">Edit</button>
+				</td>
+				<td>
+					{{ murid.last_updated_by }}
+				</td>
+				<td>
+					{{ murid.last_updated_date }}
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<form action="/backoffice/update-murid" method="post">
+					{% csrf_token %}
+					<div class="modal-header">
+						<h1 class="modal-title fs-5" id="exampleModalLabel">Edit status murid</h1>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<p>Sudah bayar</p>
+						<input type="hidden" name="id" id="idInput">
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="radioSudahBayar" id="radioSudahBayar1" value="False">
+							<label class="form-check-label" for="radioSudahBayar1">
+								Belum
+							</label>
+							</div>
+						<div class="form-check">
+							<input class="form-check-input" type="radio" name="radioSudahBayar" id="radioSudahBayar2" value="True">
+							<label class="form-check-label" for="radioSudahBayar2">
+								Sudah
+							</label>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+						<button type="submit" class="btn btn-primary">Update</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="toast-container position-fixed start-50 translate-middle-x toast-message">
+	<div id="liveToast" class="toast bg-success-subtle" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
+		<div class="toast-body">
+			{{ message }}
+			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+		</div>
+	</div>
+</div>
+
+{% endblock content %}
+
+{% block myscript %}
+<script>
+	document.addEventListener("DOMContentLoaded", function() {
+		const showToast = '{{ show_toast }}' === 'True' ? true : false
+		if (showToast) {
+			const toastLiveExample = document.getElementById('liveToast')
+			const toast = new bootstrap.Toast(toastLiveExample)
+			toast.show()
+		}
+	})
+
+	function updateData (selectedId, selectedSudahBayar) {
+		document.getElementById('idInput').value = selectedId
+
+		if (selectedSudahBayar === 'True') {
+			document.getElementById('radioSudahBayar2').checked = true
+		} else {
+			document.getElementById('radioSudahBayar1').checked = true
+		}
+
+	}
+</script>
+{% endblock myscript %}

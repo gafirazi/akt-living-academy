@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block mycss %}
+<style>
+    #tableAdmin {
+        width: 90%;
+        margin: auto;
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+    .toast-message {
+		top: 5%;
+	}
+	.toast-body {
+		display: flex;
+		justify-content: space-between;
+	}
+	.btn-yellow, .btn-yellow:hover {
+	    background-color: #fdbe15;
+	}
+</style>
+{% endblock mycss %}
+
+{% block content %}
+<div class="container">
+
+    <div class="header">
+        <h2>Referral Codes</h2>
+        <button type="button" class="btn btn-yellow" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="createReferralCode()">Create Referral Code</button>
+    </div>
+    <!-- <select class="form-select" aria-label="Default select example">
+        <option value="1">User 1</option>
+        <option value="2">User 2</option>
+    </select> -->
+    <hr>
+
+    <table class="table" id="tableAdmin">
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Referral Code</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for referral_code in referral_codes %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ referral_code.code }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="/backoffice/create-referral-code" method="post">
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Create Referral Code</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Refferal Code</span>
+                        <input type="text" name="referralCode" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+                    </div>
+                    <div class="input-group mb-3">
+                        <span class="input-group-text" id="inputGroup-sizing-default">Owner</span>
+                        <select name="owner" class="form-select" aria-label="Owner">
+                            {% for user in users %}
+                                <option value="{{user.username}}">{{ user.username }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <!-- <select name="owner" class="form-select" aria-label="Owner">
+                        {% for user in users %}
+                            <option value="{{user.username}}">{{ user.username }}</option>
+                        {% endfor %}
+                    </select> -->
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-yellow">Create</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast bg-success-subtle" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
+        <div class="toast-body">
+			{{ message }}
+			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+		</div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block myscript %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const showToast = '{{ show_toast }}' === 'True' ? true : false
+        if (showToast) {
+            const toastLiveExample = document.getElementById('liveToast')
+            const toast = new bootstrap.Toast(toastLiveExample)
+            toast.show()
+        }
+    })
+</script>
+{% endblock myscript %}

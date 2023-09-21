@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block mycss %}
+<style>
+    #tableAdmin {
+        width: 90%;
+        margin: auto;
+    }
+    .header {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 50px;
+        margin-bottom: 20px;
+    }
+    .toast-message {
+		top: 5%;
+	}
+	.toast-body {
+		display: flex;
+		justify-content: space-between;
+	}
+	.btn-download {
+	    background-color: #fdbe15;
+	}
+	
+	.btn-download:hover {
+	    background-color: #fdbe15;
+	}
+</style>
+{% endblock mycss %}
+
+{% block content %}
+<div class="container">
+
+    <div class="header">
+        <h2>Data Absensi</h2>
+        <form action="/backoffice/download-excel-data" method="get" id="formDownloadAbsensi">
+            <input type="hidden" name="programStudi" id="downloadProgramStudi">
+            <button type="button" class="btn btn-download" onclick="downloadAbsensi()">Download Absensi</button>
+        </form>
+    </div>
+    <form method="get" id="formProgramStudi" action="{% url 'data_absensi' %}">
+        <select name="programStudi" class="form-select" aria-label="Default select example" onchange="this.form.submit()" id="selectProgramStudi">
+            {% for program_studi in program_studis %}
+                {% if program_studi == selected_program_studi %}
+                    <option value="{{program_studi}}" selected>{{ program_studi }}</option>
+                {% else %}
+                    <option value="{{program_studi}}">{{ program_studi }}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+    </form>
+    <hr>
+
+    <table class="table" id="tableAdmin">
+        <thead>
+            <tr>
+                <th scope="col">No.</th>
+                <th scope="col">Nama</th>
+                <th scope="col">NIM</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+            {% for murid in murids %}
+            <tr>
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ murid.nama }}</td>
+                <td>{{ murid.nim }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast bg-success-subtle" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="2000">
+        <div class="toast-body">
+			{{ message }}
+			<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+		</div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block myscript %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const showToast = '{{ show_toast }}' === 'True' ? true : false
+        if (showToast) {
+            const toastLiveExample = document.getElementById('liveToast')
+            const toast = new bootstrap.Toast(toastLiveExample)
+            toast.show()
+        }
+    })
+
+    function downloadAbsensi () {
+        let downloadProgramStudi = document.getElementById('downloadProgramStudi')
+        let selectedProgramStudi = document.getElementById('selectProgramStudi')
+        let formDownloadAbsensi = document.getElementById('formDownloadAbsensi')
+
+        downloadProgramStudi.value = selectedProgramStudi.value
+        formDownloadAbsensi.submit()
+    }
+</script>
+{% endblock myscript %}
