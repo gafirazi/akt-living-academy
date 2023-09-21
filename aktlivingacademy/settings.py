@@ -26,7 +26,7 @@ SECRET_KEY = 'g09zebdebmo+fo2y1f_&vp^oq@k7+nh8e=zm*rh7dcwz*5c^_%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["127.0.0.1", "localhost","aktlivingacademy.com", "www.aktlivingacademy.com", ".vercel.app"]
+ALLOWED_HOSTS = ["127.0.0.1", "localhost","aktlivingacademy.com", "www.aktlivingacademy.com", ".vercel.app", ".now.sh"]
 
 
 # Application definition
