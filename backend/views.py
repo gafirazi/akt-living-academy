@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.messages import get_messages
 
-import traceback, xlwt, datetime, json
+# import traceback, xlwt, datetime, json
+import xlwt, datetime, json
 from datetime import date
 
 from .middleware import is_superuser
@@ -82,15 +83,15 @@ def add_murid(request):
 
             print('berhasil save')
 
-        except Exception as e:
-            print('gagal', e)
-            # with open('log.txt', 'w') as file:
-            #     file.write(e)
-            #     file.write("---------------")
-            #     file.write(e.args)
-            filez = open('loggagal.txt', 'w')
-            filez.write(traceback.format_exc())
-            filez.close()
+        # except Exception as e:
+        #     print('gagal', e)
+        #     # with open('log.txt', 'w') as file:
+        #     #     file.write(e)
+        #     #     file.write("---------------")
+        #     #     file.write(e.args)
+        #     filez = open('loggagal.txt', 'w')
+        #     filez.write(traceback.format_exc())
+        #     filez.close()
 
     return HttpResponse(status=200)
 
