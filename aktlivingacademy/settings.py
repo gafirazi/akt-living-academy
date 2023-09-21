@@ -73,7 +73,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'aktlivingacademy.wsgi.application'
+WSGI_APPLICATION = 'aktlivingacademy.wsgi.app'
 
 CSRF_COOKIE_NAME = "XCSRF-TOKEN"
 
