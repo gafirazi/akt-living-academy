@@ -83,6 +83,9 @@ def add_murid(request):
 
             print('berhasil save')
 
+        except Exception as e:
+            print(e)
+
         # except Exception as e:
         #     print('gagal', e)
         #     # with open('log.txt', 'w') as file:
