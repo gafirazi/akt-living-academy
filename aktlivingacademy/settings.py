@@ -21,10 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'g09zebdebmo+fo2y1f_&vp^oq@k7+nh8e=zm*rh7dcwz*5c^_%'
+# SECRET_KEY = 'g09zebdebmo+fo2y1f_&vp^oq@k7+nh8e=zm*rh7dcwz*5c^_%'
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = os.environ.get("SECRET_KEY", "secret")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG", True)
 
 ALLOWED_HOSTS = ["127.0.0.1", "localhost","aktlivingacademy.com", "www.aktlivingacademy.com", ".vercel.app", ".now.sh"]
 
@@ -74,7 +76,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'aktlivingacademy.wsgi.app'
+WSGI_APPLICATION = 'aktlivingacademy.wsgi.application'
 
 CSRF_COOKIE_NAME = "XCSRF-TOKEN"
 
@@ -148,10 +150,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
-STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+# vercel
+# STATICFILES_DIRS = os.path.join(BASE_DIR, 'static'),
+# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
+# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# STATIC_URL = '/static/'
+
+# render
+STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_FILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATIC_URL = '/static/'
+
 LOGIN_URL = '/backoffice/login'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
