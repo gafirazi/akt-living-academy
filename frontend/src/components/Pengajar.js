@@ -49,7 +49,7 @@ function Pengajar({ nama, imageURL, desc, exp }) {
       </div>
       <div className="col-md-6 pengajar-right">
         <div className="pengajar-navigation">
-          <div className="pengajar-profile">
+          {/* <div className="pengajar-profile">
             <div className="pengajar-center">
               <h3
                 className={`pengajar-nav-item ${
@@ -63,8 +63,8 @@ function Pengajar({ nama, imageURL, desc, exp }) {
                   activeDesc[0] == 1 && "active"
                 }`}></div>
             </div>
-          </div>
-          <div className="pengajar-experience">
+          </div> */}
+          {/* <div className="pengajar-experience">
             <div className="pengajar-center">
               <h3
                 className={`pengajar-nav-item ${
@@ -78,7 +78,7 @@ function Pengajar({ nama, imageURL, desc, exp }) {
                   activeDesc[1] == 1 && "active"
                 }`}></div>
             </div>
-          </div>
+          </div> */}
           {/* <div className="pengajar-skills">
             <div className="pengajar-center">
               <h3

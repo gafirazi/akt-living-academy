@@ -4,25 +4,42 @@ const pengajarDetail = [
     imageURL: "web-asset-pengajar-farhan.png",
     desc:
       "Muhammad Farhan adalah presenter keturunan Aceh di beberapa televisi swasta di Indonesia. Pria yang terkenal dengan panggilan Farhan ini juga salah satu penyiar radio swasta di Jakarta. Ia pernah duet siaran radio pagi bersama-sama dengan Indy Barends selama beberapa tahun.",
-    exp: "Test Farhan",
+    // exp: "Test Farhan",
   },
   {
     nama: "Avianto Nugroho",
-    imageURL: "web-asset-pengajar-tio.jpeg",
+    imageURL: "web-asset-pengajar-avianto.png",
     desc:
-      "With more than 20 years of experiences in PR industry, he has worked in almost all PR business chains from media, PR agencies and government bodies. \
-      During his tenure in PR agency, he was involved in PR campaigns for corporates and FMCG brands, as well as issues and crisis management. \
-      As someone who has passion in creative thinking and working with people, Avi has developed skills in Public Relations, Marketing Communications, and Media Management from various business backgrounds. \
-      Avi received his bachelor degree in Mass Communication from Sebelas Maret University and master degree in Corporate Communication Management from University of Indonesia. He is currently a lecturer in Atma Jaya University and Bakrie University. \
-      ",
-    exp: "Test Tio",
+      "Dengan lebih dari 20 tahun pengalaman di industri PR, Avi telah bekerja di berbagai bidang, termasuk media, agensi PR, dan lembaga pemerintah. Selama di agensi PR, ia terlibat dalam kampanye untuk perusahaan dan merek FMCG, serta manajemen isu dan krisis. Avi memiliki passion dalam berpikir kreatif dan bekerja dengan orang lain, serta telah mengembangkan keterampilan dalam Public Relations, Komunikasi Pemasaran, dan Manajemen Media dari berbagai latar belakang bisnis.",
+    // exp: "Test Avianto",
+  },
+  {
+    nama: "Tio Nugroho",
+    imageURL: "web-asset-pengajar-tio.png",
+    desc:
+      "Tio Nugroho adalah presenter televisi Indonesia. Tio lebih dikenal sebagai presenter televisi khususnya pada acara olahraga. Tio berpengalaman menjadi presenter di beberapa TV ternama seperti SCTV, Global TV, MNC, RCTI, dan masih banyak lainnya.",
+    // exp: "Test Sari",
   },
   {
     nama: "Sari Soegondo",
-    imageURL: "web-asset-pengajar-sari.jpeg",
+    imageURL: "web-asset-pengajar-sari.png",
     desc:
       "Sari Soegondo adalah praktisi komunikasi profesional dengan pengalaman lebih dari 20 tahun berkecimpung di berbagai lingkungan bisnis, dan akhirnya mendirikan ID COMM pada tahun 2014 sebagai salah satu pendiri. Saat ini, ia juga menjabat sebagai Wakil Ketua Asosiasi Perusahaan Humas Indonesia untuk masa jabatan 2020-2023.",
-    exp: "Test Sari",
+    // exp: "Test Sari",
+  },
+  {
+    nama: "Nico Oliver",
+    imageURL: "web-asset-pengajar-nico.png",
+    desc:
+      "Nico Oliver merupakan seorang public speaker, MC, penyiar radio dan juga tv host / presenter, dimana salah program tv yang pernah dipegangnya adalah [Masih] Dunia Lain. Namun, selain menggeluti dunia public speaking sejak tahun 2004, sebenarnya pria yang akrab disapa Nico ini juga memiliki latar belakang pendidikan pemasaran.",
+    // exp: "Test Sari",
+  },
+  {
+    nama: "Lia Atmadjaja",
+    imageURL: "web-asset-pengajar-lia.png",
+    desc:
+      "Lia Atmadjaja memulai dan mengembangkan karirnya dari penyiar radio,  sampai hari ini masih aktif sebagai host/presenter, MC dan public speaker.  Sempat bekerja juga di perusahaan rekaman Internasional di Jakarta, dan juga media TV Indonesia sebagai Public Relations.",
+    // exp: "Test Sari",
   },
 ];
 
